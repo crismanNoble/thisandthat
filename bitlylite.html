@@ -1,0 +1,188 @@
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+ 
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<meta name="author" content="Drew Douglass" />
+
+	<title>AJAX URL Shortener With the Bit.ly API</title>
+
+	
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+
+    var ajax_loader = '<img src="ajax-loader.gif" alt="" />';
+
+    $('.response').hide();
+
+    $('.loader').hide();
+
+    $('#submit_short').click(function() {
+
+
+
+        //Show AJAX loader
+
+        $('.loader:eq(0)').html(ajax_loader).show(500, function() {
+
+
+
+            //Perform request
+
+            $.post('shorten.php', {
+
+                long_url: $('#long_val').val()
+
+            }, function(data) {$('.loader:eq(0)').hide(500, function() {$('.response:eq(0)').addClass('response_bg').html(data).fadeIn(1000);});});
+
+		alert(data);
+
+        });
+
+
+
+
+
+
+
+        return false;
+
+    });
+
+
+
+});
+
+</script>
+
+<style type="text/css" media="screen">
+
+body {
+
+	background-color:#d9d9d9;
+
+	color:#212121;
+
+	font-family:Gill sans, arial, sans-serif;
+
+ 
+
+}
+
+h1, h3, h3, h4, h5, h6 {
+
+	font-family:Helvetica, arial, Verdana, sans-serif;
+
+	text-shadow: 0px 1px 1px #999;//For those of you with decent browsers ;-)
+
+}
+
+h1 {
+
+	font-size:29px;
+
+	margin:30px auto;
+
+	width:960px;
+
+}
+
+small {
+
+	font-size:13px;
+
+ 
+
+}
+
+#wrap {
+
+	width:960px;
+
+	margin:0 auto;
+
+	background-color:#fafafa;
+
+	border:1px dashed #999;
+
+	padding:20px;
+
+ 
+
+}
+
+.box {
+
+	border:1px dashed #999;
+
+	text-align:center;
+
+	margin:20px 60px;
+
+}
+
+.response_bg {
+
+	background-color:#ccc;
+
+	width:600px;
+
+	margin:10px auto;
+
+	padding:10px 0px;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+	<div id='wrap'>
+
+ 
+
+		<!--Bitly shorten-->
+
+		<div class='box'>
+
+			<h3>Shorten a URL</h3>
+
+			<form action='shorten.php' method='post'>
+
+				<p>URL to shorten:</p>
+
+				<p><input id='long_val' type='text' name='long_url' value='' />
+
+				<input id='submit_short' type='submit' name='shorten_submit' value='Shorten!' /></p>
+
+ 
+
+				<div class='loader'></div>
+
+				<p class='response'></p>
+
+			</form>
+
+		</div>
+
+ 
+
+	</div>		
+
+</body>
+
+</html>
+

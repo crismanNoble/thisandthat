@@ -1,0 +1,678 @@
+<!DOCTYPE html> 
+
+<html>
+
+<link rel="shortcut icon" href="/favicon.ico">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+
+	<meta name="keywords" content="webapp, productivity, comparison, side-by-side, angela jones creative conuslting, split browsing, split browser, cross browser, cross OS, web application, web, app, contrast, share, side by side, bookmark"> 
+
+	<meta name="description" content="Compare and Share"> 
+
+	
+
+	<title>th.isandth.at</title> 
+
+	
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', 'UA-12216753-3']);
+
+  _gaq.push(['_trackPageview']);
+
+
+
+  (function() {
+
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+  })();
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+
+function populateURL()
+
+{
+
+//adding a small bit to populate the popup box
+
+//changing th ? to a # means the page will not reload
+
+//	alert('share the following url:  ' + 'http//th.isandth.at' + '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value));
+
+	parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	var fullURL = window.location.toString();
+
+	alert(fullURL);
+
+	document.forms['shareForm'].elements['shareTarget'].value = fullURL;
+
+	}
+
+
+
+//take the user input of the texbok and load it into the right or left frame
+
+function setLeft(){
+
+	var target=document.forms['leftForm'].elements['leftTarget'].value;
+
+	if(/^(file|http).*/.test(target)){
+
+		document.getElementById('left').src = target;
+
+	}else{
+
+		document.getElementById('left').src = "http://"+target;
+
+	};
+
+parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+}
+
+
+
+function setLeftEnter(){
+
+	var target=document.forms['leftForm'].elements['leftTarget'].value;
+
+	if(/^(file|http).*/.test(target)){
+
+		document.getElementById('left').src = target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	return false;
+
+	}else{
+
+		document.getElementById('left').src = "http://"+target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	return false;
+
+	};
+
+}
+
+
+
+function setRight(){
+
+	var target=document.forms['rightForm'].elements['rightTarget'].value;
+
+	if(/^(file|http).*/.test(target)){
+
+		document.getElementById('right').src = target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	}else{
+
+		document.getElementById('right').src = "http://"+target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	};
+
+}
+
+
+
+function setRightEnter(){
+
+	var target=document.forms['rightForm'].elements['rightTarget'].value;
+
+	if(/^(file|http).*/.test(target)){
+
+		document.getElementById('right').src = target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	return false;
+
+	}else{
+
+		document.getElementById('right').src = "http://"+target;
+
+		parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+	return false;
+
+	};
+
+parent.location = '#' + 'leftTarget=' + escape(document.getElementById('leftTarget').value) + '&' + 'rightTarget=' + escape(document.getElementById('rightTarget').value);
+
+}
+
+
+
+//reload the last thing to be put into the frames
+
+function reloadLeft () {
+
+	var left = document.getElementById('left');
+
+	left.src = left.src;
+
+}
+
+function reloadRight () {
+
+	var right = document.getElementById('right');
+
+	right.src = right.src;
+
+}
+
+//this should open the iframe source into a new window
+
+function popLeft () {
+
+	var left = document.getElementById('left');
+
+	window.open(left.src);
+
+}
+
+function popRight () {
+
+	var right = document.getElementById('right');
+
+	window.open(right.src);
+
+}
+
+
+
+function decodeURL() {
+
+//the goal of this function is to split the url on a # and return the values of the right and left targets
+
+var myString = window.location.toString();//get the url and make it a string
+
+//alert("The whole URI is:" + myString);
+
+var mySplitResult = myString.split("#"); //split it on the hashtag
+
+if(typeof mySplitResult[1] == "undefined" || mySplitResult[1].length == 0) {
+
+	//if there is no # or nothing after it, we must be at the home page
+
+	//alert("dude its all undefined!");
+
+	document.forms['leftForm'].elements['leftTarget'].value = 'this.com';
+
+	document.getElementById('left').src = "http://th.isandth.at/quickstart.html";
+
+	document.forms['rightForm'].elements['rightTarget'].value = 'that.com';
+
+	document.getElementById('right').src = "http://th.isandth.at/about.html";
+
+	return false;
+
+	};
+
+var mySplitResult2 = mySplitResult[1].split("&"); //split on the &
+
+var firstArg = mySplitResult2[0]; //what is before the &
+
+var secondArg = mySplitResult2[1]; //what is after the &
+
+
+
+
+
+var firstArgVals = firstArg.split("=");//split first argument on the equals sign
+
+var firstSide = firstArgVals[0]; //pass what is before the equals sign
+
+if(firstSide == "rightTarget") { //if it says rightTarget....
+
+	var rightTargetFromURL = unescape(firstArgVals[1]); //make the right URL point to the correct place
+
+	var firstTargetFromURL = rightTargetFromURL;
+
+	//alert("first side is right and is pointing:" + rightTargetFromURL);
+
+}else if(firstSide == "leftTarget") { //if it says leftTarget....
+
+	var leftTargetFromURL = unescape(firstArgVals[1]); //make the left URL point to the correct place
+
+	var firstTargetFromURL = rightTargetFromURL;
+
+	//alert("first side is left and is pointing:" + leftTargetFromURL);
+
+	};
+
+
+
+//we have taken care of the first arguement lets work on the second
+
+	if (typeof secondArg == "undefined" || secondArg.length == 0){
+
+		//alert("the second argument is undefined");
+
+	}else{ // If it is not undefined or empty lets start doing stuff to it
+
+		//alert("second arguement: " + secondArg);
+
+		var secondArgVals = secondArg.split("=");//split second argument on the equals sign
+
+		var secondSide = secondArgVals[0]; //pass what is before the equals sign
+
+		if(secondSide == "rightTarget") { //if it says rightTarget....
+
+			var rightTargetFromURL = unescape(secondArgVals[1]); //make the right URL point to the correct place
+
+			//alert("second side is right and is pointing:" + rightTargetFromURL);
+
+		}else if(secondSide == "leftTarget") { //if it says leftTarget....
+
+			var leftTargetFromURL = unescape(firstArgVals[1]); //make the left URL point to the correct place
+
+			//alert("second side is left and is pointing:" + leftTargetFromURL);
+
+			};
+
+	};
+
+
+
+//we have defined the left and right, unescaped  Target URLs by now, they could be undefined which is okay
+
+//alert("left will go" + leftTargetFromURL);
+
+//alert("right will go" + rightTargetFromURL);
+
+//we will check for undefined, and go default, for an http and add it if it needs it
+
+	if(typeof leftTargetFromURL == "undefined") {
+
+		document.forms['leftForm'].elements['leftTarget'].value = 'this.com';
+
+		document.getElementById('left').src = "http://th.isandth.at/quickstart.html";
+
+	}else{
+
+		if(/^(file|http).*/.test(leftTargetFromURL)){
+
+		document.getElementById('left').src = leftTargetFromURL;
+
+		//alert(leftTargetFromURL + 'left');
+
+		document.forms['leftForm'].elements['leftTarget'].value = leftTargetFromURL;
+
+		}else{
+
+			document.getElementById('left').src = "http://"+leftTargetFromURL;
+
+			//alert(leftTargetFromURL + 'left');
+
+			document.forms['leftForm'].elements['leftTarget'].value = leftTargetFromURL;
+
+			};
+
+	};
+
+	
+
+	if(typeof rightTargetFromURL == "undefined") {
+
+		document.forms['rightForm'].elements['rightTarget'].value = 'this.com';
+
+		document.getElementById('right').src = "http://th.isandth.at/about.html";
+
+	}else{
+
+	if(/^(file|http).*/.test(rightTargetFromURL)){
+
+		document.getElementById('right').src = rightTargetFromURL;
+
+		//alert(rightTargetFromURL + 'right');
+
+		document.forms['rightForm'].elements['rightTarget'].value = rightTargetFromURL;
+
+		}else{
+
+			document.getElementById('right').src = "http://"+rightTargetFromURL;
+
+			//alert(rightTargetFromURL + 'right');
+
+			document.forms['rightForm'].elements['rightTarget'].value = rightTargetFromURL;
+
+			};
+
+	};
+
+
+
+	
+
+	
+
+	
+
+}
+
+
+
+
+
+function convertURL () {
+
+//add a test for a ?, then replace the ? with a #?
+
+//this function is for backwards compatibility of urls created with the ?
+
+	var currentURL = window.location.toString();
+
+	if (/[?]+/.test(currentURL)){
+
+	newURL = currentURL.replace('?', '#');
+
+	parent.location = newURL;	
+
+	};
+
+	return false;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+//this function will put what is in the leftTarget and rightTarget into the urls, the only problem is it reloads the page too it will only not reload if it is a hash tag instead, but then the above functions have to be modified.
+
+//escape(URL) or encodeURI() 
+
+function shareURL(){
+
+alert('Simply copy the url from the address bar');
+
+}
+
+
+
+//anything in the following function will run on refresh or pageload
+
+function start(){
+
+	convertURL();
+
+	decodeURL();
+
+}
+
+
+
+function fbs_click() {
+
+	u=location.href;
+
+	t=document.title + 'for easy side-by-side viewing';
+
+	window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');
+
+	return false;
+
+}
+
+
+
+//this says to load from the url in the beginning
+
+window.onload = start;
+
+
+
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link rel="stylesheet" href="css/orangebox.css" type="text/css" media="screen" />
+
+    <link rel="stylesheet" href="css/popupStyle.css" type="text/css" media="screen" /> 
+
+    <script src="http://code.jquery.com/jquery-1.5.1.js"></script> 
+
+    <script type="text/javascript" src="js/orangebox.min.js"></script> 
+
+<!--the following variables control the orangebox -->
+
+<script type="text/javascript">
+
+ob_inineWidth=0.4; //I think this is a typo?, additional controls in teh oragnebox css
+
+ob_overlayOpacity = 0.5;
+
+ob_fileNotFound_Message = "Can't Find File!";
+
+ob_contentBorderWidth=0;
+
+</script>
+
+</head>
+
+<body>
+
+<!--This is the content in the popup -->
+
+<div id="inlineContent" style="display:none">
+
+		<div id="shareHead">
+
+		</div>
+
+		<div id="shareMid">
+
+		<br>To share this view, copy the entire link from the address bar and show your friends.<br><br>
+
+		<!--<form name="shareForm">
+
+		<input type="text" class="shareTarget" name="shareTarget" id="shareTarget" /></form><br><br>-->
+
+		<br>Or you can share the link by using one of the following services (more to come soon):<br><br>
+
+			<!-- AddThis Button BEGIN -->
+
+			<div id="AddThisStyling" class="addthis_toolbox addthis_default_style addthis_32x32_style">
+
+			<!--<a class="addthis_button_facebook"></a>-->
+
+			<!--<a class="addthis_button_twitter"></a>
+
+			<a class="addthis_button_gmail"></a>
+
+				<a href="http://twitter.com/share" class="twitter-share-button" data-text="I used http://th.isandth.at for side-by-side viewing." data-count="none" data-via="th_isandth_at" data-related="angelajonescc:graphic designer"><img src="images/twitter.png" />Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+
+
+<a href="http://twitter.com/home?status=Currently reading http://www.test.com/post-url" title="Click to share this post on Twitter">Share on Twitter</a>
+
+-->
+
+
+
+<a href="http://www.facebook.com/share.php?" onclick="return fbs_click()" target="_blank"><img src="images/fb.png" alt="Share on Facebook" /></a>
+
+			<!--<a class="addthis_button_email"></a>
+
+			<a class="addthis_button_compact"></a>
+
+			<!-- <a class="addthis_counter addthis_bubble_style"></a>-->
+
+			</div>
+
+			<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+
+<!--the following variables control the addthis widget-->
+
+			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4da1e9dd2d25de53"></script>
+
+			<!-- AddThis Button END -->
+
+		</div>
+
+		<!-- AddThis Button END -->
+
+		<div id="shareFoot">		
+
+		<img src="images/logosmall.png" id="logopopupleft">
+
+		<div id="shareFootText">
+
+		th.isandth.at
+
+		</div>
+
+		</div>
+
+
+
+</div><!--end popup content-->
+
+<!--[if lt IE 7]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div> <![endif]--> 
+
+    <div id="head">
+
+	<div id="headTop">
+
+        	<div id=logo><a href="http://th.isandth.at"><img class="logo" src="logo.png" alt="This And That Logo"/></a></div>
+
+		<div id="rightTextHead">
+
+		<a href="about.html" target="_blank" class="headinglink">About<br></a>
+
+		<a href="mailto:crisman@th.isandth.at" target="_blank" class="headinglink">Feedback<br></a>
+
+		<form name="sharing">
+
+		<a href="#inlineContent" rel="lightbox" alt="Share This Pair" class="control"><img src="images/sharethispair.png"  alt="Share This Pair" class="sharing"></a>
+
+		<!--<a href="JavaScript:shareURL()" alt="Share This Pair" class="control"><img src="images/sharethispair.png" alt="Share This Pair" class="sharing"></a>-->
+
+		</form>   		
+
+		</div>
+
+	</div>
+
+	<div id="controlsWrapper">
+
+		<div id="controlsLeft">
+
+		<form name="leftForm" onsubmit="return setLeftEnter()">
+
+			<input type="text" class="urlTarget" name="leftTarget" id="leftTarget" /> 
+
+  			<a href="JavaScript:setLeft()" class="control"><img src="go.png" class="control"></a>
+
+			<a href="JavaScript:reloadLeft()" class="control"><img src="reload.png" class="control"></a>
+
+			<a href="JavaScript:popLeft()"><img src="popout.png" class="control"></a>
+
+			</form>
+
+		</div>
+
+		<div id="controlsRight">
+
+		<form name="rightForm" onsubmit="return setRightEnter()">
+
+			<input type="text" class="urlTarget" name="rightTarget" id="rightTarget" /> 
+
+  			<a href="JavaScript:setRight()" class="control"><img src="go.png"></a>
+
+			<a href="JavaScript:reloadRight()" class="control"><img src="reload.png"></a>
+
+			<a href="JavaScript:popRight()" class="control"><img src="popout.png"></a>
+
+			</form>
+
+		</form>
+
+		</div>
+
+	</div>
+
+    </div>
+
+    <div id="frames">
+
+        <div id="leftFrame">
+
+            <iframe id="left">
+
+            </iframe>
+
+        </div>
+
+        <div id="rightFrame">
+
+            <iframe id="right">
+
+            </iframe>
+
+        </div>
+
+    </div>
+
+    <div id="footer">
+
+        <div id="leftText">
+
+            <a href="http://angelajonescc.com" class="ajcc" target="_blank">Site Design by Angela Jones Creative Consulting</a> | <a href="http://crisnoble.com" class="ajcc" target="_blank">Coding by Cris Noble</a>
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+
+setTimeout(function(){var a=document.createElement("script");
+
+var b=document.getElementsByTagName('script')[0];
+
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0012/0982.js?"+Math.floor(new Date().getTime()/3600000);
+
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,64 @@
+#inlineContent{
+position:relative;
+
+
+}
+
+
+#shareHead{
+height: 31px;
+width:100%;
+    background-image: url('../images/background.png'); 
+    background-repeat: repeat; 
+}
+
+
+
+#logopopupleft{
+padding-left:22px;
+float:left;
+position:absolute;bottom:22;
+}
+
+#AddThisStyling{
+}
+
+#shareMid{
+padding-left:22px;
+font-family:"Helvetica Neue","DejaVu Sans", "URW Gothic L","Arial", "Microsoft Sans Serif","sans-serif";
+color:black;
+font-size: 12px;
+font-weight:bold;
+padding-bottom:15px;
+}
+
+input.shareTarget{
+    float:left;
+    height:24px;
+    width:80%;
+    padding:0 0 0 5px;
+    margin:0 0 0 0;
+    border: 1px solid #858889;
+    color:#858889;
+    background-color:#f2f3f3;
+}
+
+#shareFoot{
+height: 50px;
+width:100%;
+padding-top: 26px;
+padding-bottom:22px;
+float:right;
+}
+
+#shareFootText{
+background-color:white;
+padding-top: 38px;
+border-right:22px solid #fff;
+float:right;
+font-family:"Helvetica Neue","DejaVu Sans", "URW Gothic L","Arial", "Microsoft Sans Serif","sans-serif";
+color:#00aaef;
+font-size: 12px;
+font-weight:bold;
+
+}
